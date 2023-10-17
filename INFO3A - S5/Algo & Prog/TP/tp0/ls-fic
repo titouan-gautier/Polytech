@@ -1,0 +1,16 @@
+total 144
+-rw-rw-r-- 1 titoug titoug   892 sept. 15 11:13 analyse_prevert.py
+-rw-rw-r-- 1 titoug titoug   622 sept. 15 10:09 arithmetique.py
+-rw-rw-r-- 1 titoug titoug  2288 sept. 12 18:49 data_inventaire_prevert.txt
+-rw-rw-r-- 1 titoug titoug   262 sept. 15 10:09 debug.py
+-rw-rw-r-- 1 titoug titoug 97995 sept. 15 11:06 gutenberg.txt
+-rw-rw-r-- 1 titoug titoug   282 sept. 15 09:50 hello.py
+-rw-rw-r-- 1 titoug titoug     0 sept. 15 10:03 __init__.py
+-rw-rw-r-- 1 titoug titoug     0 sept. 20 14:41 ls-fic
+-rw-rw-r-- 1 titoug titoug   164 sept. 15 10:04 main.py
+-rw-rw-r-- 1 titoug titoug   145 sept. 15 09:50 moyenne.py
+-rw-rw-r-- 1 titoug titoug   659 sept. 15 10:26 polygone.py
+-rw-rw-r-- 1 titoug titoug    92 sept. 15 09:50 polynome.py
+-rw-rw-r-- 1 titoug titoug   522 sept. 12 18:58 prevert.py
+drwxrwxr-x 2 titoug titoug  4096 sept. 19 09:55 __pycache__
+-rw-rw-r-- 1 titoug titoug   620 sept. 19 09:55 util.py
