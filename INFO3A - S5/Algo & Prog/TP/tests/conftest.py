@@ -93,6 +93,10 @@ def pytest_addoption(parser):
 #         pytest.skip("Undefined test key")
 
 
+##################################################################################
+# Helper definitions
+##################################################################################
+
 def fake_function(*args):
     raise NotImplementedError(f"Not found")
 
@@ -108,10 +112,22 @@ DELTA_SIZES = [0, 1, 9, 99, 999]
 INPUT_LISTS = [[42],
                list(range(1, 6)),
                [random.randint(0, 100) for _ in range(10)],
-               [random.randint(0, 100) for _ in range(100)]]
-               #[random.randint(0, 100) for _ in range(1_000)]]
+               [random.randint(0, 100) for _ in range(100)],
+               [random.randint(0, 100) for _ in range(1_000)]]
 EMPTY_LISTS = [None, []]
 INPUT_LISTS_WITH_NULL = EMPTY_LISTS + INPUT_LISTS
+
+INPUT_DUP_TREES = [[1, 1], [1, 1, 1], [1, 1, 1, 1], [1, 1, 2, 2, 3, 3, 4, 4],
+        [42, 42, None, 42, None, None, None, 42, None, None, None, None, None, None, None, 42, None, None, None, None,
+               None, None, None, None, None, None, None, None, None, None, None, 42]]
+INPUT_UNIQUE_TREES = [[1], [1, 2], [1, 2, 3], [1, 2, 3, 4], [2, 1, 4, 0, None, 3, 5],
+              [1, 2, None, 3, None, None, None, 4, None, None, None, None, None, None, None, 5, None, None, None, None,
+               None, None, None, None, None, None, None, None, None, None, None, 6],
+              [6, 4, 5, 2, 1, 9, 7, 3, 0, 11, 12], [6, 4, 5, 2, None, 9, 7, 3, 0, None, None, 11, 12],
+               list(range(2 ** 8 + 1))]
+INPUT_TREES = INPUT_DUP_TREES + INPUT_UNIQUE_TREES
+EMPTY_TREES = [None, []]
+INPUT_TREES_WITH_NULL = EMPTY_TREES + INPUT_TREES
 
 
 @pytest.fixture
@@ -151,4 +167,24 @@ def empty_list(request):
 
 @pytest.fixture(params=INPUT_LISTS_WITH_NULL)
 def input_list_with_null(request):
+    return request.param
+
+
+@pytest.fixture(params=EMPTY_TREES)
+def empty_tree(request):
+    return request.param
+
+
+@pytest.fixture(params=INPUT_TREES)
+def input_tree(request):
+    return request.param
+
+
+@pytest.fixture(params=INPUT_UNIQUE_TREES)
+def input_unique_tree(request):
+    return request.param
+
+
+@pytest.fixture(params=INPUT_TREES_WITH_NULL)
+def input_tree_with_null(request):
     return request.param

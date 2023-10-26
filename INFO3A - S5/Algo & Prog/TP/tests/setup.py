@@ -27,8 +27,17 @@ TP_STRUCTURE = {'tp3': ['e1q1', 'e1q2',
                         'e8q1', 'e8q2', 'e8q3',
                         'e9q1', 'e9q2',
                         'e10q1', 'e10q2',
-                        'e11q1', 'e11q2', 'e11q3']
-
+                        'e11q1', 'e11q2', 'e11q3'],
+                'tp5': ['e1q1', 'e1q2', 'e1q3', 'e1q4', 'e1q5',
+                        'e2q1', 'e2q2',
+                        'e3q1', 'e3q2', 'e3q3', 'e3q4',
+                        'e4q1',
+                        'e5q1', 'e5q2', 'e5q3',
+                        'e6q1', 'e6q2', 'e6q3',
+                        'e7q1', 'e7q2', 'e7q3', 'e7q4',
+                        'e8q1', 'e8q2', 'e8q3',
+                        'e9q1',
+                        'e10q1', 'e10q2', 'e10q3', 'e10q4']
                 }
 
 TP_CLASS = {
@@ -74,6 +83,12 @@ TP_CLASS = {
         'test_dataclass': 'tp4/test_queue_dataclass.py',
         'test_class': 'tp4/test_queue_class.py',
     },
+    'btree': {
+        'module': 'tp5.btree',
+        'class': 'BinaryTree',
+        'test_dataclass': 'tp5/test_btree_dataclass.py',
+        'test_class': 'tp5/test_btree_class.py',
+    },
 }
 
 LINKEDLIST_STRUCT_NAMES = ['LinkedList', 'Cell']
@@ -96,3 +111,13 @@ STACK_NAMES = STACK_STRUCT_NAMES + STACK_FUNCTION_NAMES
 QUEUE_STRUCT_NAMES = ['Queue']
 QUEUE_FUNCTION_NAMES = ['q_new', 'q_is_empty', 'q_size', 'q_is_full', 'q_str', 'q_front', 'q_rear', 'q_enqueue', 'q_dequeue']
 QUEUE_NAMES = QUEUE_STRUCT_NAMES + QUEUE_FUNCTION_NAMES
+
+BTREE_STRUCT_NAMES = ['BinaryTree', 'Node']
+BTREE_FUNCTION_NAMES = ['bt_new', 'bt_root', 'bt_is_empty', 'bt_size', 'bt_height', 'bt_str',
+                        'bt_insert', 'bt_remove', 'bt_lookup', 'bt_is_equal','bt_is_heap', 'bt_lca',
+                        'n_new', 'n_set', 'n_get', 'n_left', 'n_right', 'n_is_leaf',
+                        'bt_is_bst']
+BTREE_NAMES = BTREE_STRUCT_NAMES + BTREE_FUNCTION_NAMES
+
+BSTREE_STRUCT_NAMES = ['BSTree']
+BSTREE_FUNCTION_NAMES = ['bt_is_bst', 'bst_lookup', 'bst_insert', 'bst_str', 'bst_insert', 'bst_remove', 'bst_to_list']

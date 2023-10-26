@@ -12,13 +12,14 @@ try:
             setattr(stack_module, name, FakeStruct)
 
         # it is then "safe" to expose the student's code
-        globals()[name] = getattr(stack_module, name)
+        cls = getattr(stack_module, name)
+        globals()[name] = cls
 
         # aliases for the student's code
-        if hasattr(name, 'str'):
-            setattr(name, '__str__', lambda self: self.str())
-        if hasattr(name, 'size'):
-            setattr(name, '__len__', lambda self: self.len())
+        if hasattr(cls, 'str'):
+            setattr(cls, '__str__', lambda self: self.str())
+        if hasattr(cls, 'size'):
+            setattr(cls, '__len__', lambda self: self.size())
 
 except ImportError:
     pass

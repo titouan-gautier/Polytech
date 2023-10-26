@@ -12,13 +12,14 @@ try:
             setattr(deque_module, name, FakeStruct)
 
         # it is then "safe" to expose the student's code
-        globals()[name] = getattr(deque_module, name)
+        cls = getattr(deque_module, name)
+        globals()[name] = cls
 
         # aliases for the student's code
-        if hasattr(name, 'str'):
-            setattr(name, '__str__', lambda self: self.str())
-        if hasattr(name, 'len'):
-            setattr(name, '__len__', lambda self: self.len())
+        if hasattr(cls, 'str'):
+            setattr(cls, '__str__', lambda self: self.str())
+        if hasattr(cls, 'len'):
+            setattr(cls, '__len__', lambda self: self.len())
 
 except ImportError:
     pass

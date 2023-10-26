@@ -13,21 +13,22 @@ try:
             setattr(llist_module, name, FakeStruct)
 
         # it is then "safe" to expose the student's code
-        globals()[name] = getattr(llist_module, name)
+        cls = getattr(llist_module, name)
+        globals()[name] = cls
 
         # aliases for the student's code
-        if hasattr(name, 'str'):
-            setattr(name, '__str__', lambda self: self.str())
-        if hasattr(name, 'len'):
-            setattr(name, '__len__', lambda self: self.len())
-        if hasattr(name, 'get'):
-            setattr(name, '__getitem__', lambda self, i: self.get())
-        if hasattr(name, 'set'):
-            setattr(name, '__setitem__', lambda self, i, item: self.set(i, item))
-        if hasattr(name, 'iter_cells'):
-            setattr(name, '__iter__', lambda self: self.iter_cells())
-        if hasattr(name, 'reversed_iter_cells'):
-            setattr(name, '__reversed__', lambda self: self.reversed_iter_cells())
+        if hasattr(cls, 'str'):
+            setattr(cls, '__str__', lambda self: self.str())
+        if hasattr(cls, 'len'):
+            setattr(cls, '__len__', lambda self: self.len())
+        if hasattr(cls, 'get'):
+            setattr(cls, '__getitem__', lambda self, i: self.get())
+        if hasattr(cls, 'set'):
+            setattr(cls, '__setitem__', lambda self, i, item: self.set(i, item))
+        if hasattr(cls, 'iter_cells'):
+            setattr(cls, '__iter__', lambda self: self.iter_cells())
+        if hasattr(cls, 'reversed_iter_cells'):
+            setattr(cls, '__reversed__', lambda self: self.reversed_iter_cells())
 
 except ImportError:
     pass
