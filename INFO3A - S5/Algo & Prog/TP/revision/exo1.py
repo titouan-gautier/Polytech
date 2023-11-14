@@ -30,3 +30,33 @@ def plps_moi(s):
 
 
 print(plps_moi("mentalement"))
+
+def quicksort(tab: ArrayList) -> None:
+    debut = 0
+    fin = tab.size - 1
+
+    def sort(tab, debut, fin):
+
+        if debut < fin:
+            pivot = tab.tab[debut]
+            i, j = debut, fin
+
+            while i < j:
+
+                while tab.tab[i] < pivot:
+                    i += 1
+                    tab.tab[i], tab.tab[j] = tab.tab[j], tab.tab[i]
+
+                while tab.tab[j] > pivot:
+                    j -= 1
+                    tab.tab[j], tab.tab[i] = tab.tab[i], tab.tab[j]
+
+                if i < j:
+                    tab.tab[i], tab.tab[j] = tab.tab[j], tab.tab[i]
+
+            tab.tab[i], tab.tab[j] = tab.tab[j], tab.tab[i]
+
+            sort(tab, debut, j)
+            sort(tab, j + 1, fin)
+
+    sort(tab, debut, fin)

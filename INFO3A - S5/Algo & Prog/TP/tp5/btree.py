@@ -217,15 +217,48 @@ class BinaryTree:
 
     def bt_lca(self):
         return
-    #Trouver l'ancetre le plus profond, c'est a dire le noeud le plus profond a partir du quel ont peut acceder à a et b deux noeud quelcoqnue.
-    #Tester recursivenement pour root puis droite et gauche puis .... et renvoyer une bool et stocker le node le plus prfond trouver
-    #Si bool est fausse retourner le node stocké.
 
-    def bt_lca_rec2(self,current : Node):
+    # Trouver l'ancetre le plus profond, c'est a dire le noeud le plus profond a partir du quel ont peut acceder à a et b deux noeud quelcoqnue.
+    # Tester recursivenement pour root puis droite et gauche puis .... et renvoyer une bool et stocker le node le plus prfond trouver
+    # Si bool est fausse retourner le node stocké.
+
+    def bt_lca_rec2(self, current: Node):
         return
+
+    def is_bst(self) -> bool:
+        return self.is_bst_rec(self.root_node, None, True,2)
+
+    def is_bst_rec(self, current: Node, previous: Node | None, res: bool, id : int):
+
+        if current.is_leaf():
+            return res
+        else:
+
+            if id == 0 :
+                if previous is not None:
+                    if previous.value is not None:
+                        if previous.value < current.value:
+                            res = False
+            elif id == 1 :
+                if previous is not None:
+                    if previous.value is not None:
+                        if previous.value > current.value:
+                            res = False
+
+            if current.left() is None:
+                gauche = self.is_bst_rec(current.left(), current, res, 0)
+            else:
+                gauche = self.is_bst_rec(current.left(), current, res, 0)
+
+            if current.right() is None:
+                droite = self.is_bst_rec(current.right(), current, res, 1)
+            else:
+                droite = self.is_bst_rec(current.right(), current, res, 1)
+
+            return gauche and droite
 
 
 if __name__ == "__main__":
-    bt = BinaryTree([2,1,4,0,None,3,5])
+    bt = BinaryTree([6,2,11,1,4,7,12,None,None,3,None,None,None,12,14])
     print(bt)
-
+    print(bt.is_bst())
