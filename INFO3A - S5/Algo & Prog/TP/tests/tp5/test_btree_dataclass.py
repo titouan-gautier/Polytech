@@ -1,30 +1,18 @@
 import pytest
-import importlib
 import re
+from typing import Iterator
 
-from tests.setup import BTREE_STRUCT_NAMES, BTREE_NAMES, TP_CLASS
-from tests.conftest import FakeStruct, fake_function, input_tree_with_null, input_tree, empty_tree, input_unique_tree
+from tests.conftest import import_stuff
 
-try:
-    btree_module = importlib.import_module(TP_CLASS['btree']['module'])     # may raise ImportError
+import_stuff('btree')
 
-    for name in BTREE_NAMES:
-        if not hasattr(btree_module, name):
-            if name in BTREE_STRUCT_NAMES:
-                setattr(btree_module, name, FakeStruct)
-            else:
-                setattr(btree_module, name, fake_function)
-        # it is then "safe" to expose the student's code
-        globals()[name] = getattr(btree_module, name)
-except ImportError:
-    pass
+# beurk!
+from tests.conftest import *
 
 
 ##################
 # Helper functions
 ##################
-from typing import Iterator
-
 
 def level_order_traversal(node: Node | None) -> Iterator[list[int]]:
     queue: list[Node | None] = [node]

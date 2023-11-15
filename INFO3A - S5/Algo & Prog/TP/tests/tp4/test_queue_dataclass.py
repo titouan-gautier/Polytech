@@ -1,22 +1,11 @@
 import pytest
-import importlib
+from tests.conftest import import_stuff
 
-from tests.setup import QUEUE_STRUCT_NAMES, QUEUE_NAMES, TP_CLASS
-from tests.conftest import FakeStruct, fake_function
+import_stuff('queue_deque')
 
-try:
-    queue_module = importlib.import_module(TP_CLASS['queue_deque']['module'])     # may raise ImportError
+# beurk!
+from tests.conftest import *
 
-    for name in QUEUE_NAMES:
-        if not hasattr(queue_module, name):
-            if name in QUEUE_STRUCT_NAMES:
-                setattr(queue_module, name, FakeStruct)
-            else:
-                setattr(queue_module, name, fake_function)
-        # it is then "safe" to expose the student's code
-        globals()[name] = getattr(queue_module, name)
-except ImportError:
-    pass
 
 ROLLING_QUEUE = 7  #
 

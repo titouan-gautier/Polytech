@@ -1,26 +1,10 @@
 import pytest
+from tests.conftest import import_stuff
 
-try:
-    from tp3.queue_ import (Queue)
-except ImportError:
-    if 'Queue' not in globals():
-        class Queue:
-            def __init__(self):
-                raise NotImplementedError("Queue class not found")
+import_stuff('queue')
 
-methods = dir(Queue)
-
-if 'str' not in methods:
-    def str(self):
-        return self.__str__()
-
-    Queue.str = str
-
-if 'size' not in methods:
-    def size(self):
-        return self.__len__()
-
-    Queue.size = size
+# beurk!
+from tests.conftest import *
 
 ROLLING_QUEUE = 7  #
 
@@ -41,7 +25,7 @@ class TestQueue:
 
     def test_q_size_empty_queue(self, dsize):
         q = Queue(dsize)
-        assert q.size() == 0
+        assert q.__len__() == 0
 
     def test_q_is_empty(self, dsize):
         q = Queue(dsize)
@@ -52,7 +36,7 @@ class TestQueue:
         q = Queue(len(l))
         for i, e in enumerate(l):
             q.enqueue(e)
-            assert q.size() == i + 1
+            assert q.__len__() == i + 1
 
     def test_q_is_empty_enqueue(self, input_list):
         l = input_list
@@ -68,7 +52,7 @@ class TestQueue:
             q.enqueue(e)
         for i in range(len(l)):
             q.dequeue()
-            assert q.size() == len(l) - 1 - i
+            assert q.__len__() == len(l) - 1 - i
 
     def test_q_is_empty_dequeue(self, input_list):
         l = input_list
@@ -87,10 +71,10 @@ class TestQueue:
         for _ in range(ROLLING_QUEUE):
             for i, e in enumerate(l):
                 q.enqueue(e)
-                assert q.size() == i + 1
+                assert q.__len__() == i + 1
             for i in range(len(l)):
                 q.dequeue()
-                assert q.size() == len(l) - 1 - i
+                assert q.__len__() == len(l) - 1 - i
 
     def test_is_empty_enqueue_dequeue(self, input_list, dsize):
         l = input_list
@@ -131,14 +115,14 @@ class TestQueue:
 
     def test_q_str_empty_queue(self, dsize):
         q = Queue(dsize)
-        assert q.str() == "[]"
+        assert q.__str__() == "[]"
 
     def test_q_str(self, input_list, dsize):
         l = input_list
         q = Queue(len(l) + dsize)
         for e in l:
             q.enqueue(e)
-        assert q.str() == str(l)
+        assert q.__str__() == str(l)
 
     def test_q_str_enqueue_dequeue(self, input_list, dsize):
         l = input_list
@@ -146,10 +130,10 @@ class TestQueue:
         for _ in range(ROLLING_QUEUE):
             for e in l:
                 q.enqueue(e)
-            assert q.str() == str(l)
+            assert q.__str__() == str(l)
             for _ in range(len(l)):
                 q.dequeue()
-            assert q.str() == "[]"
+            assert q.__str__() == "[]"
 
     def test_q_enqueue_dequeue_fails_overflow(self, input_list, dsize):
         l = input_list

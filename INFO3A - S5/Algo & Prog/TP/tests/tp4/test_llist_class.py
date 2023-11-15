@@ -1,37 +1,11 @@
 import pytest
 import random
-import importlib
+from tests.conftest import import_stuff
 
-from tests.setup import LINKEDLIST_STRUCT_NAMES, TP_CLASS
-from tests.conftest import FakeStruct
+import_stuff('llist')
 
-try:
-    llist_module = importlib.import_module(TP_CLASS['llist']['module'])     # may raise ImportError
-
-    for name in LINKEDLIST_STRUCT_NAMES:
-        if not hasattr(llist_module, name):
-            setattr(llist_module, name, FakeStruct)
-
-        # it is then "safe" to expose the student's code
-        cls = getattr(llist_module, name)
-        globals()[name] = cls
-
-        # aliases for the student's code
-        if hasattr(cls, 'str'):
-            setattr(cls, '__str__', lambda self: self.str())
-        if hasattr(cls, 'len'):
-            setattr(cls, '__len__', lambda self: self.len())
-        if hasattr(cls, 'get'):
-            setattr(cls, '__getitem__', lambda self, i: self.get())
-        if hasattr(cls, 'set'):
-            setattr(cls, '__setitem__', lambda self, i, item: self.set(i, item))
-        if hasattr(cls, 'iter_cells'):
-            setattr(cls, '__iter__', lambda self: self.iter_cells())
-        if hasattr(cls, 'reversed_iter_cells'):
-            setattr(cls, '__reversed__', lambda self: self.reversed_iter_cells())
-
-except ImportError:
-    pass
+# beurk!
+from tests.conftest import *
 
 
 @pytest.mark.key("e1q1")

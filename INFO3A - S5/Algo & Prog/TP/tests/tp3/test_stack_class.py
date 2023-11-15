@@ -1,26 +1,10 @@
 import pytest
+from tests.conftest import import_stuff
 
-try:
-    from tp3.stack import Stack
-except ImportError:
-    if 'Stack' not in globals():
-        class Stack:
-            def __init__(self):
-                raise NotImplementedError("Stack class not found")
+import_stuff('stack')
 
-methods = dir(Stack)
-
-if 'str' not in methods:
-    def str(self):
-        return self.__str__()
-
-    Stack.str = str
-
-if 'size' not in methods:
-    def size(self):
-        return self.__len__()
-
-    Stack.size = size
+# beurk!
+from tests.conftest import *
 
 
 @pytest.mark.key("e9q2")
@@ -39,7 +23,7 @@ class TestStack:
 
     def test_s_size_empty_stack(self, dsize):
         s = Stack(dsize)
-        assert s.size() == 0
+        assert s.__len__() == 0
 
     def test_s_is_empty(self, dsize):
         s = Stack(dsize)
@@ -50,17 +34,17 @@ class TestStack:
         s = Stack(len(l) + dsize)
         for i, e in enumerate(l):
             s.push(e)
-            assert s.size() == i + 1
+            assert s.__len__() == i + 1
 
     def test_s_size_pop(self, input_list, dsize):
         l = input_list  # alias
         s = Stack(len(l) + dsize)
         for e in l:
             s.push(e)
-        assert s.size() == len(l)
+        assert s.__len__() == len(l)
         for i in range(len(l)):
             s.pop()
-            assert s.size() == len(l) - 1 - i
+            assert s.__len__() == len(l) - 1 - i
 
     def test_s_is_empty_push(self, input_list, dsize):
         l = input_list  # alias
@@ -100,14 +84,14 @@ class TestStack:
 
     def test_s_str_empty(self, dsize):
         s = Stack(dsize)
-        assert s.str() == "[]"
+        assert s.__str__() == "[]"
 
     def test_s_str(self, input_list, dsize):
         l = input_list  # alias
         s = Stack(len(l) + dsize)
         for i, e in enumerate(l):
             s.push(e)
-        assert s.str() == str(l)
+        assert s.__str__() == str(l)
 
     def test_s_push_fails_overflow(self, input_list, dsize):
         l = input_list  # alias

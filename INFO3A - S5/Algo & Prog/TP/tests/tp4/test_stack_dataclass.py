@@ -1,22 +1,10 @@
 import pytest
-import importlib
+from tests.conftest import import_stuff
 
-from tests.setup import STACK_STRUCT_NAMES, STACK_NAMES, TP_CLASS
-from tests.conftest import FakeStruct, fake_function
+import_stuff('stack_deque')
 
-try:
-    stack_module = importlib.import_module(TP_CLASS['stack_deque']['module'])     # may raise ImportError
-
-    for name in STACK_NAMES:
-        if not hasattr(stack_module, name):
-            if name in STACK_STRUCT_NAMES:
-                setattr(stack_module, name, FakeStruct)
-            else:
-                setattr(stack_module, name, fake_function)
-        # it is then "safe" to expose the student's code
-        globals()[name] = getattr(stack_module, name)
-except ImportError:
-    pass
+# beurk!
+from tests.conftest import *
 
 
 @pytest.mark.key("e8q1")

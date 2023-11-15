@@ -1,35 +1,39 @@
 import pytest
 import random
 from pathlib import Path
-from .setup import TP_STRUCTURE, TP_CLASS
 import dataclasses as dc
 import importlib
+import string
+
+#importlib.invalidate_caches()
+
+from .setup import TP_QUESTIONS, TP_DATA_STRUCTURES
 
 collect_ignore = []
-for tp_class in TP_CLASS.values():
+for struct in TP_DATA_STRUCTURES.values():
     try:
-        module = importlib.import_module(tp_class['module'])
-        if dc.is_dataclass(getattr(module, tp_class['class'])):
-            collect_ignore.append(tp_class['test_class'])
+        module = importlib.import_module(struct['module'])
+        if dc.is_dataclass(getattr(module, struct['classnames'][0])):
+            collect_ignore.append(struct['test_class'])
         else:
-            collect_ignore.append(tp_class['test_dataclass'])
+            collect_ignore.append(struct['test_dataclass'])
 
     except (ImportError, AttributeError):
-        collect_ignore.append(tp_class['test_class'])
+        collect_ignore.append(struct['test_class'])
 
 
 def _add_preceding_tests(tp, key):
     keynames = []
-    i, tp_struct = None, None
+    i, tp_q = None, None
     try:
-        tp_struct = TP_STRUCTURE[tp]  # prone to KeyError
-        i = tp_struct.index(key)  # prone to ValueError
+        tp_q = TP_QUESTIONS[tp]  # prone to KeyError
+        i = tp_q.index(key)  # prone to ValueError
     except KeyError:
         print(f"\n*** Unknown TP value {tp!s} ***")
     except ValueError:
         print(f"\n*** Unknown key {key!r} for {tp} ***")
     if i is not None:
-        keynames = tp_struct[:i + 1]
+        keynames = tp_q[:i + 1]
     return keynames
 
 
@@ -105,15 +109,73 @@ class FakeStruct:
     __post_init__ = fake_function
 
 
+def import_stuff(key):
+    module_name = TP_DATA_STRUCTURES[key]['module']
+    classnames = TP_DATA_STRUCTURES[key]['classnames']
+    funcnames = TP_DATA_STRUCTURES[key]['funcnames']
+
+
+    try:
+        module = importlib.import_module(module_name)     # may raise ImportError
+        dataclass: bool = dc.is_dataclass(getattr(module, classnames[0]))
+        names = (classnames + funcnames) if dataclass else classnames
+        for name in names:
+            if not hasattr(module, name):
+                if name in classnames:
+                    setattr(module, name, FakeStruct)
+                else:
+                    setattr(module, name, fake_function)
+            # it is then "safe" to expose the student's code
+            cls = getattr(module, name)
+            globals()[name] = cls
+
+            if not dataclass:
+                # aliases for the student's code
+                if hasattr(cls, 'str') and not hasattr(cls, '__str__'):
+                    setattr(cls, '__str__', lambda self: self.str())
+                if hasattr(cls, 'len') and not hasattr(cls, '__len__'):
+                    setattr(cls, '__len__', lambda self: self.len())
+                if hasattr(cls, 'size') and not hasattr(cls, '__len__'):
+                    setattr(cls, '__len__', lambda self: self.size())
+                if hasattr(cls, 'get') and not hasattr(cls, '__getitem__'):
+                    setattr(cls, '__getitem__', lambda self, i: self.get())
+                if hasattr(cls, 'set') and not hasattr(cls, '__setitem__'):
+                    setattr(cls, '__setitem__', lambda self, i, item: self.set(i, item))
+                if hasattr(cls, 'put') and not hasattr(cls, '__setitem__'):
+                    setattr(cls, '__setitem__', lambda self, i, item: self.put(i, item))
+                if hasattr(cls, 'iter_cells') and not hasattr(cls, '__iter__'):
+                    setattr(cls, '__iter__', lambda self: self.iter_cells())
+                if hasattr(cls, 'reversed_iter_cells') and not hasattr(cls, '__reversed__'):
+                    setattr(cls, '__reversed__', lambda self: self.reversed_iter_cells())
+                if hasattr(cls, 'equal') and not hasattr(cls, '__eq__'):
+                    setattr(cls, '__eq__', lambda self: self.equal())
+
+    except ImportError:
+        pass
+
+
 ##################################################################################
 # Fixture definitions
 ##################################################################################
-DELTA_SIZES = [0, 1, 9, 99, 999]
-INPUT_LISTS = [[42],
+DELTA_SIZES = [0, 1, 9, 99]
+INPUT_LISTS = [[42], [42] * 10,
                list(range(1, 6)),
                [random.randint(0, 100) for _ in range(10)],
-               [random.randint(0, 100) for _ in range(100)],
-               [random.randint(0, 100) for _ in range(1_000)]]
+               [random.randint(0, 100) for _ in range(100)]]
+# random letter lists
+CHAR_LISTS = [['a'], [''.join(random.choices(string.ascii_lowercase, k=50)) for _ in range(6)],
+                [''.join(random.choices(string.ascii_lowercase, k=50))  for _ in range(10)],
+                [''.join(random.choices(string.ascii_lowercase, k=50))  for _ in range(100)]]
+
+CHAR_LISTS2 = [['a'], [''.join(random.choices(string.ascii_lowercase, k=50)) for _ in range(6)],
+                [''.join(random.choices(string.ascii_lowercase, k=50))  for _ in range(10)],
+                [''.join(random.choices(string.ascii_lowercase, k=50))  for _ in range(100)]]
+for i, letter_list in enumerate(CHAR_LISTS):
+    CHAR_LISTS[i] = list(set(letter_list))
+
+for i, letter_list2 in enumerate(CHAR_LISTS2):
+    CHAR_LISTS2[i] = list(set(letter_list2))
+
 EMPTY_LISTS = [None, []]
 INPUT_LISTS_WITH_NULL = EMPTY_LISTS + INPUT_LISTS
 
@@ -124,10 +186,19 @@ INPUT_UNIQUE_TREES = [[1], [1, 2], [1, 2, 3], [1, 2, 3, 4], [2, 1, 4, 0, None, 3
               [1, 2, None, 3, None, None, None, 4, None, None, None, None, None, None, None, 5, None, None, None, None,
                None, None, None, None, None, None, None, None, None, None, None, 6],
               [6, 4, 5, 2, 1, 9, 7, 3, 0, 11, 12], [6, 4, 5, 2, None, 9, 7, 3, 0, None, None, 11, 12],
-               list(range(2 ** 8 + 1))]
+               list(range(2 ** 6 + 1))]
 INPUT_TREES = INPUT_DUP_TREES + INPUT_UNIQUE_TREES
+
 EMPTY_TREES = [None, []]
 INPUT_TREES_WITH_NULL = EMPTY_TREES + INPUT_TREES
+
+INPUT_ORDERED_TREES = [[1], [1, 1], [2, 1], [1, None, 2], [2, 1, 3],
+                       [42, 42, None, 42, None, None, None, 42, None, None, None, None, None, None, None, 42],
+                       [1, None, 2, None, None, None, 3, None, None, None, None, None, None, None, 4,
+                        None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, 5],
+                       [6, 2, 11, 1, 4, 7, 12, None, None, 3, None, None, None, 12, 14],
+                       [6, 6, 11, 6, None, 11, 12, 6, None, None, None, 11, None, 12, 14, 6],
+                       ]
 
 
 @pytest.fixture
@@ -188,3 +259,19 @@ def input_unique_tree(request):
 @pytest.fixture(params=INPUT_TREES_WITH_NULL)
 def input_tree_with_null(request):
     return request.param
+
+
+@pytest.fixture(params=INPUT_ORDERED_TREES)
+def input_ordered_tree(request):
+    return request.param
+
+
+@pytest.fixture(params=CHAR_LISTS)
+def char_list(request):
+    return request.param
+
+
+@pytest.fixture(params=CHAR_LISTS2)
+def char_list2(request):
+    return request.param
+

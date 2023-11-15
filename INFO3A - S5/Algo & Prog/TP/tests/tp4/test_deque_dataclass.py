@@ -1,22 +1,10 @@
 import pytest
-import importlib
+from tests.conftest import import_stuff
 
-from tests.setup import DEQUE_STRUCT_NAMES, DEQUE_NAMES, TP_CLASS
-from tests.conftest import FakeStruct, fake_function
+import_stuff('deque')
 
-try:
-    deque_module = importlib.import_module(TP_CLASS['deque']['module'])     # may raise ImportError
-
-    for name in DEQUE_NAMES:
-        if not hasattr(deque_module, name):
-            if name in DEQUE_STRUCT_NAMES:
-                setattr(deque_module, name, FakeStruct)
-            else:
-                setattr(deque_module, name, fake_function)
-        # it is then "safe" to expose the student's code
-        globals()[name] = getattr(deque_module, name)
-except ImportError:
-    pass
+# beurk!
+from tests.conftest import *
 
 
 @pytest.mark.key("e6q1")

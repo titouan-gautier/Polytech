@@ -1,32 +1,11 @@
 import pytest
-import importlib
 import re
+from tests.conftest import import_stuff
 
-from tests.setup import BTREE_STRUCT_NAMES, TP_CLASS
-from tests.conftest import FakeStruct, input_tree_with_null, input_tree, empty_tree
+import_stuff('btree')
 
-
-try:
-    btree_module = importlib.import_module(TP_CLASS['btree']['module'])     # may raise ImportError
-
-    for name in BTREE_STRUCT_NAMES:
-        if not hasattr(btree_module, name):
-            setattr(btree_module, name, FakeStruct)
-
-        # it is then "safe" to expose the student's code
-        cls = getattr(btree_module, name)
-        globals()[name] = cls
-
-        # aliases for the student's code
-        if hasattr(cls, 'str'):
-            setattr(cls, '__str__', lambda self: self.str())
-        if hasattr(cls, 'size'):
-            setattr(cls, '__len__', lambda self: self.size())
-        if hasattr(cls, 'is_equal'):
-            setattr(cls, '__eq__', lambda self: self.is_equal())
-
-except ImportError:
-    pass
+# beurk!
+from tests.conftest import *
 
 
 ##################
@@ -41,11 +20,11 @@ def level_order_traversal(node: Node | None) -> Iterator[list[int]]:
         level: list[int] = []
         queue.append(None)  # stop mark for the next level
         while current := queue.pop(0) is not None:
-            level.append(n_get(current))
-            if n_left(current) is not None:
-                queue.append(n_left(current))
-            if n_right(current) is not None:
-                queue.append(n_right(current))
+            level.append(current.__getitem__())
+            if current.left() is not None:
+                queue.append(current.left())
+            if current.right() is not None:
+                queue.append(current.right())
         yield level
 
 
@@ -136,20 +115,20 @@ class TestNodeFunctions:
         left = Node(4)
         right = Node(2)
         n = Node(42, left, right)
-        assert n.get() == 42
-        assert left.get() == 4
-        assert right.get() == 2
+        assert n.__getitem__() == 42
+        assert left.__getitem__() == 4
+        assert right.__getitem__() == 2
 
     def test_node_set(self):
         left = Node(4)
         right = Node(2)
         n = Node(42, left, right)
-        n.set(24)
-        left.set(2)
-        right.set(4)
-        assert n.get() == 24
-        assert left.get() == 2
-        assert right.get() == 4
+        n.__setitem__(24)
+        left.__setitem__(2)
+        right.__setitem__(4)
+        assert n.__getitem__() == 24
+        assert left.__getitem__() == 2
+        assert right.__getitem__() == 4
 
     def test_node_left_right(self):
         left = Node(4)
@@ -157,8 +136,8 @@ class TestNodeFunctions:
         n = Node(42, left, right)
         assert n.left() is left
         assert n.right() is right
-        assert n.left().get() == 4
-        assert n.right().get() == 2
+        assert n.__getitem__(n.left()) == 4
+        assert n.__getitem__(n.right()) == 2
         assert left.left() is None
         assert left.right() is None
         assert right.left() is None

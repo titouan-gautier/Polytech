@@ -1,23 +1,13 @@
 import pytest
-import importlib
 import random
 
-from tests.setup import LINKEDLIST_STRUCT_NAMES, LINKEDLIST_NAMES, TP_CLASS
-from tests.conftest import FakeStruct, fake_function
+from tests.conftest import import_stuff
 
-try:
-    llist_module = importlib.import_module(TP_CLASS['llist']['module'])     # may raise ImportError
+import_stuff('llist')
 
-    for name in LINKEDLIST_NAMES:
-        if not hasattr(llist_module, name):
-            if name in LINKEDLIST_STRUCT_NAMES:
-                setattr(llist_module, name, FakeStruct)
-            else:
-                setattr(llist_module, name, fake_function)
-        # it is then "safe" to expose the student's code
-        globals()[name] = getattr(llist_module, name)
-except ImportError:
-    pass
+# beurk!
+from tests.conftest import *
+
 
 
 @pytest.mark.key("e1q1")
@@ -69,13 +59,36 @@ class TestGetSet:
 
 @pytest.mark.key("e2q2")
 class TestInsert:
+    def test_insert_default_head_get(self, input_list):
+        ll = ll_new()
+        cells: list[Cell] = []
+        for e in input_list:
+            ll_insert(ll, e, neighbor=None, after=True)
+            cells.append(ll_head(ll))
+            assert ll_get(ll, ll_head(ll)) == e
+            assert ll_len(ll) == len(cells)
+            assert not ll_is_empty(ll)
+        assert all(ll_get(ll, c) == e for e, c in zip(input_list, cells))
+
     def test_insert_head_get(self, input_list):
         ll = ll_new()
         cells: list[Cell] = []
         for e in input_list:
-            ll_insert(ll, e)
+            head = None if ll_is_empty(ll) else ll_head(ll)
+            ll_insert(ll, e, neighbor=head, after=False)
             cells.append(ll_head(ll))
             assert ll_get(ll, ll_head(ll)) == e
+            assert ll_len(ll) == len(cells)
+            assert not ll_is_empty(ll)
+        assert all(ll_get(ll, c) == e for e, c in zip(input_list, cells))
+
+    def test_insert_default_tail_get(self, input_list):
+        ll = ll_new()
+        cells: list[Cell] = []
+        for e in input_list:
+            ll_insert(ll, e,  neighbor=None, after=False)
+            cells.append(ll_tail(ll))
+            assert ll_get(ll, ll_tail(ll)) == e
             assert ll_len(ll) == len(cells)
             assert not ll_is_empty(ll)
         assert all(ll_get(ll, c) == e for e, c in zip(input_list, cells))
@@ -84,7 +97,8 @@ class TestInsert:
         ll = ll_new()
         cells: list[Cell] = []
         for e in input_list:
-            ll_insert(ll, e,  neighbor=None, after=False)
+            tail = None if ll_is_empty(ll) else ll_tail(ll)
+            ll_insert(ll, e,  neighbor=tail, after=True)
             cells.append(ll_tail(ll))
             assert ll_get(ll, ll_tail(ll)) == e
             assert ll_len(ll) == len(cells)
