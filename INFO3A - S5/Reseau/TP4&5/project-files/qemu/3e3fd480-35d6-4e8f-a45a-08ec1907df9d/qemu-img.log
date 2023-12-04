@@ -1,0 +1,1 @@
+Formatting '/home/titoug/Documents/Polytech/INFO3A - S5/Reseau/TP4&5/project-files/qemu/3e3fd480-35d6-4e8f-a45a-08ec1907df9d/hda_disk.qcow2', fmt=qcow2 cluster_size=65536 extended_l2=off compression_type=zlib size=2147483648 backing_file=/home/titoug/GNS3/images/QEMU/debian-openstack-amd64.qcow2 backing_fmt=qcow2 lazy_refcounts=off refcount_bits=16

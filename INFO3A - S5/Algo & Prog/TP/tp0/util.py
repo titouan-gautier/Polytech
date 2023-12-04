@@ -62,7 +62,7 @@ def print_tab(tab : Array) :
 
     for i in tab :
         tab2.append(i)
-    return tab2
+    return tab2aaa
 
 
 if __name__ == '__main__':
