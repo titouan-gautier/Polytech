@@ -1,0 +1,7 @@
+@startuml
+actor Utilisateur
+usecase "Rechercher Produit" as UC1
+usecase "Ajouter Produit au Panier" as UC2
+usecase "Passer Commande" as UC3
+
+@enduml

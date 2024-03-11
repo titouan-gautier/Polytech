@@ -1,0 +1,4 @@
+/home/titoug/.local/share/JetBrains/Toolbox/apps/CLion-Nova/ch-0/233.13871/bin/cmake/linux/x64/bin/cmake -DCMAKE_BUILD_TYPE=Debug -DCMAKE_MAKE_PROGRAM=/home/titoug/.local/share/JetBrains/Toolbox/apps/CLion-Nova/ch-0/233.13871/bin/ninja/linux/x64/ninja -G Ninja -S "/home/titoug/Documents/POLYTECH/INFO3A - S6/Langage C/TP1.2" -B "/home/titoug/Documents/POLYTECH/INFO3A - S6/Langage C/TP1.2/cmake-build-debug"
+-- Configuring done (0.0s)
+-- Generating done (0.0s)
+-- Build files have been written to: /home/titoug/Documents/POLYTECH/INFO3A - S6/Langage C/TP1.2/cmake-build-debug

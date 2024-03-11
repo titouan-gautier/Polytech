@@ -1,0 +1,1 @@
+gcc -Wall -o q1.exe q1.c tri.c tab.c ordre.c temps.c -lm

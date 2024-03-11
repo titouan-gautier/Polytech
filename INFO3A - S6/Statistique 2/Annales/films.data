@@ -1,0 +1,99 @@
+director	genre	name	starring	year
+"Jaume Collet-Serra"	"Action-Adventure"	"Run All Night"	"Liam Neeson"	2015
+"Olivier Megaton"	"Action-Adventure"	"Búsqueda implacable 3"	"Liam Neeson"	2014
+"Jaume Collet-Serra"	"Action-Adventure"	"Non-Stop"	"Liam Neeson"	2014
+"Scott Frank"	"Drama"	"A Walk Among the Tombstones"	"Liam Neeson"	2014
+"Paul Haggis"	"Drama"	"Amores infieles"	"Liam Neeson"	2013
+"Olivier Megaton"	"Action-Adventure"	"Búsqueda implacable 2"	"Liam Neeson"	2012
+"Jaume Collet-Serra"	"Action-Adventure"	"Unknown"	"Liam Neeson"	2011
+"Joe Carnahan"	"Action-Adventure"	"The Grey"	"Liam Neeson"	2011
+"Joe Carnahan"	"Action-Adventure"	"The A-Team"	"Liam Neeson"	2010
+"Pierre Morel"	"Action-Adventure"	"Búsqueda implacable"	"Liam Neeson"	2008
+"Bill Condon"	"Biography"	"Kinsey"	"Liam Neeson"	2004
+"Eric Blakeney"	"Comedy"	"Gun Shy"	"Liam Neeson"	2000
+"Bille August"	"Drama"	"Les Misérables"	"Liam Neeson"	1998
+"Neil Jordan"	"Biography"	"Michael Collins"	"Liam Neeson"	1996
+"Michael Caton-Jones"	"Action-Adventure"	"Rob Roy"	"Liam Neeson"	1995
+"John Madden"	"Drama"	"Ethan Frome"	"Liam Neeson"	1993
+"Steven Spielberg"	"Biography"	"Schindler's List"	"Liam Neeson"	1993
+"Simon Moore"	"Drama"	"Under Suspicion"	"Liam Neeson"	1991
+"Sam Raimi"	"Action-Adventure"	"Darkman"	"Liam Neeson"	1990
+"Gavin O'Connor"	"Action-Adventure"	"The Accountant"	"Ben Affleck"	2016
+"Zack Snyder"	"Action-Adventure"	"Batman v Superman: Dawn of Justice"	"Ben Affleck"	2016
+"Ben Affleck"	"Action-Adventure"	"Live by Night"	"Ben Affleck"	2016
+"David Fincher"	"Drama"	"Gone Girl"	"Ben Affleck"	2014
+"Brad Furman"	"Drama"	"Runner Runner"	"Ben Affleck"	2013
+"Ben Affleck"	"Action-Adventure"	"Argo"	"Ben Affleck"	2012
+"Terrence Malick"	"Drama"	"To the Wonder"	"Ben Affleck"	2012
+"John Wells"	"Drama"	"The Company Men"	"Ben Affleck"	2010
+"Ben Affleck"	"Drama"	"The Town"	"Ben Affleck"	2010
+"Kevin Smith"	"Comedy"	"Jersey Girl"	"Ben Affleck"	2004
+"Mike Mitchell"	"Comedy"	"Surviving Christmas"	"Ben Affleck"	2004
+"Mark Steven Johnson"	"Action-Adventure"	"Daredevil"	"Ben Affleck"	2003
+"John Woo"	"Action-Adventure"	"Paycheck"	"Ben Affleck"	2003
+"Martin Brest"	"Comedy"	"Gigli"	"Ben Affleck"	2003
+"Phil Alden Robinson"	"Action-Adventure"	"The Sum of All Fears"	"Ben Affleck"	2002
+"Roger Michell"	"Drama"	"Changing Lanes"	"Ben Affleck"	2002
+"Michael Bay"	"Action-Adventure"	"Pearl Harbor"	"Ben Affleck"	2001
+"John Frankenheimer"	"Action-Adventure"	"Reindeer Games"	"Ben Affleck"	2000
+"Don Roos"	"Drama"	"Bounce"	"Ben Affleck"	2000
+"Kevin Smith"	"Action-Adventure"	"Dogma"	"Ben Affleck"	1999
+"Risa Bramon Garcia"	"Comedy"	"200 Cigarettes"	"Ben Affleck"	1999
+"Kevin Smith"	"Comedy"	"Chasing Amy"	"Ben Affleck"	1997
+"John Wells"	"Comedy"	"Burnt"	"Bradley Cooper"	2015
+"Cameron Crowe"	"Comedy"	"Aloha"	"Bradley Cooper"	2015
+"Susanne Bier"	"Drama"	"Serena"	"Bradley Cooper"	2014
+"Clint Eastwood"	"Action-Adventure"	"American Sniper"	"Bradley Cooper"	2014
+"Todd Phillips"	"Comedy"	"The Hangover Part III"	"Bradley Cooper"	2013
+"David O. Russell"	"Comedy"	"Silver Linings Playbook"	"Bradley Cooper"	2012
+"Brian Klugman"	"Drama"	"The Words"	"Bradley Cooper"	2012
+"Neil Burger"	"Action-Adventure"	"Limitless"	"Bradley Cooper"	2011
+"Todd Phillips"	"Comedy"	"The Hangover Part II"	"Bradley Cooper"	2011
+"Paul Greengrass"	"Action-Adventure"	"Jason Bourne"	"Matt Damon"	2016
+"Yimou Zhang"	"Action-Adventure"	"The Great Wall"	"Matt Damon"	2016
+"Ridley Scott"	"Action-Adventure"	"The Martian"	"Matt Damon"	2015
+"Neill Blomkamp"	"Action-Adventure"	"Elysium"	"Matt Damon"	2013
+"Gus Van Sant"	"Drama"	"Promised Land"	"Matt Damon"	2012
+"Cameron Crowe"	"Comedy"	"We Bought a Zoo"	"Matt Damon"	2011
+"Steven Soderbergh"	"Drama"	"Contagion"	"Matt Damon"	2011
+"Paul Greengrass"	"Action-Adventure"	"Green Zone"	"Matt Damon"	2010
+"Clint Eastwood"	"Drama"	"Hereafter"	"Matt Damon"	2010
+"Steven Soderbergh"	"Comedy"	"The Informant!"	"Matt Damon"	2009
+"Paul Greengrass"	"Action-Adventure"	"The Bourne Ultimatum"	"Matt Damon"	2007
+"Robert De Niro"	"Drama"	"The Good Shepherd"	"Matt Damon"	2006
+"Terry Gilliam"	"Action-Adventure"	"The Brothers Grimm"	"Matt Damon"	2005
+"Paul Greengrass"	"Action-Adventure"	"The Bourne Supremacy"	"Matt Damon"	2004
+"Bobby Farrelly"	"Comedy"	"Stuck on You"	"Matt Damon"	2003
+"Billy Bob Thornton"	"Drama"	"All the Pretty Horses"	"Matt Damon"	2000
+"Anthony Minghella"	"Drama"	"The Talented Mr. Ripley"	"Matt Damon"	1999
+"John Dahl"	"Drama"	"Rounders"	"Matt Damon"	1998
+"Francis Ford Coppola"	"Drama"	"The Rainmaker"	"Matt Damon"	1997
+"David Koepp"	"Action-Adventure"	"Mortdecai"	"Johnny Depp"	2015
+"Scott Cooper"	"Biography"	"Black Mass"	"Johnny Depp"	2015
+"Wally Pfister"	"Drama"	"Transcendence"	"Johnny Depp"	2014
+"Gore Verbinski"	"Action-Adventure"	"The Lone Ranger"	"Johnny Depp"	2013
+"Tim Burton"	"Comedy"	"Dark Shadows"	"Johnny Depp"	2012
+"Rob Marshall"	"Action-Adventure"	"Pirates of the Caribbean: On Stranger Tides"	"Johnny Depp"	2011
+"Bruce Robinson"	"Comedy"	"The Rum Diary"	"Johnny Depp"	2011
+"Florian Henckel von Donnersmarck"	"Action-Adventure"	"The Tourist"	"Johnny Depp"	2010
+"Gore Verbinski"	"Action-Adventure"	"Pirates of the Caribbean: At World's End"	"Johnny Depp"	2007
+"Tim Burton"	"Drama"	"Sweeney Todd: The Demon Barber of Fleet Street"	"Johnny Depp"	2007
+"Gore Verbinski"	"Action-Adventure"	"Pirates of the Caribbean: Dead Man's Chest"	"Johnny Depp"	2006
+"Tim Burton"	"Action-Adventure"	"Charlie and the Chocolate Factory"	"Johnny Depp"	2005
+"Laurence Dunmore"	"Drama"	"The Libertine"	"Johnny Depp"	2004
+"Marc Forster"	"Biography"	"Finding Neverland"	"Johnny Depp"	2004
+"David Koepp"	"Action-Adventure"	"Secret Window"	"Johnny Depp"	2004
+"Gore Verbinski"	"Action-Adventure"	"Pirates of the Caribbean: The Curse of the Black Pearl"	"Johnny Depp"	2003
+"Ted Demme"	"Biography"	"Blow"	"Johnny Depp"	2001
+"Albert Hughes"	"Action-Adventure"	"From Hell"	"Johnny Depp"	2001
+"Roman Polanski"	"Action-Adventure"	"La última puerta"	"Johnny Depp"	1999
+"Terry Gilliam"	"Action-Adventure"	"Fear and Loathing in Las Vegas"	"Johnny Depp"	1998
+"Jim Jarmusch"	"Drama"	"Dead Man"	"Johnny Depp"	1995
+"John Badham"	"Action-Adventure"	"Nick of Time"	"Johnny Depp"	1995
+"Tim Burton"	"Biography"	"Ed Wood"	"Johnny Depp"	1994
+"Jeremy Leven"	"Comedy"	"Don Juan DeMarco"	"Johnny Depp"	1994
+"Lasse Hallström"	"Drama"	"What's Eating Gilbert Grape"	"Johnny Depp"	1993
+"Jeremiah S. Chechik"	"Comedy"	"Benny & Joon"	"Johnny Depp"	1993
+"Emir Kusturica"	"Comedy"	"Arizona Dream"	"Johnny Depp"	1993
+"Tim Burton"	"Drama"	"Edward Scissorhands"	"Johnny Depp"	1990
+"John Waters"	"Comedy"	"Cry-Baby"	"Johnny Depp"	1990
