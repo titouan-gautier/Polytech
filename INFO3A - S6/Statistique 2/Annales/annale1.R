@@ -48,7 +48,7 @@ p_value <- calculate_p_value(sucre, 15)
 
 #p_value > 0,01 alors on ne rejette pas l'hypothèse H0
 
-## EXERCICE 2 ##
+## PARTI 2 ##
 
 # 2.1
 
@@ -59,8 +59,51 @@ correlations <- cor(vins)
 # sucre et sulphates
 # acicdite et alcool
 
-# 2.2
-# Oui elle est significative on puet le voir sur le graphique et sa valeur est superieur a 0.5
+# Question 2 : corrélation significative
+
+cor.test(sulphates, sucre)
+# p-value < 0.05 donc la corrélation est significative
+
+
+# Question 3 : calcul de la valeur observée
+correlation = cor(acidite, chlorides)
+n = nrow(vins)
+stat_test = correlation*sqrt(n-2)/sqrt(1 - correlation^2)
+
+
+# EXERCICE 2 
+# Partie 2.1 Analyse 1D
+
+# Question 1 : nombre de films dans le jeux de données
+nrow(films)
+
+# Question 2 : Combien de réalisateurs différents sont présents ?
+directorf = factor(director)
+length(levels(directorf))
+# 73
+
+#Question 3 : Visualisez la distribution des cat ́egories de films (genre)
+genref = factor(genre)
+pie(summary(genref))
+
+# Question 4 : Les donn ́ees remettent-elles en cause l’hypoth`ese H0 d’une proportion de com ́edies  ́egale à 30% dans la population ?
+prop.test(sum(genre == "Comedy"), length(genre), 0.3) # On effectue un test de proportion pour savoir si 30% de comedie est envisageable
+# p-value = 0.04978 < 0.05 donc on rejette l'hypothèse
+
+
+# Partie 2.2 : analyse 2D
+
+# Question 1 : Donnez la table de contingence qui croise les deux variables.
+table_g_s = table(genre,starring)
+
+
+# Question 2 : Question théorique : indiquez par une formule comment vous pouvez calculer la table de contingence attendue sous hypoth`ese d’ind ́ependance.
+table(genre) %*% t(table(starring)) / sum(table(genre, starring))
+
+
+# Question 3 : 
+table = table(starring, genre)
+assocplot(table)
 
 
 

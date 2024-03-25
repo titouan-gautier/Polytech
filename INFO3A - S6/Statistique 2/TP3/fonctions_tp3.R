@@ -91,3 +91,14 @@ val_corr <- function(dfCor,min) {
 
 }
 
+
+
+
+khi2 <- function(facteur1, facteur2, K) {
+  tableObs <- table(facteur1, facteur2)
+  tableTheorique <- table(facteur1) %*% t(table(facteur2)) / K
+  
+  sumD <- sum((tableObs - tableTheorique)^2 / tableTheorique)
+  
+  return(sumD)
+}
