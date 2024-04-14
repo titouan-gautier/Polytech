@@ -1,5 +1,5 @@
 interface MovingObject {
-    int getX() ;
-    int getY() ;
+    float getX() ;
+    float getY() ;
     void deplace() ;
 }

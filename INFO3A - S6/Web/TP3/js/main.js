@@ -39,7 +39,7 @@ async function loadGenres() {
 
     });
 
-    loadArtists(genres[0]);
+    await loadArtists(genres[0]);
 
 }
 
@@ -140,8 +140,8 @@ async function artistSelected(evt) {
     const body = document.querySelector('body');
 
     albumPopUp.style.visibility = 'visible';
-    albumPopUp.style.opacity = 1;
-    albumPopUp.style.transition = 'opacity 1s ease-out';
+    albumPopUp.style.opacity = '1';
+    albumPopUp.style.transition = 'opacity 0.5s ease-out';
     albumPopUp.style.top = `${body.clientHeight / 2 - 100}px`;
     albumPopUp.style.left = `${body.clientWidth / 2 - 350}px`;
 
@@ -151,7 +151,7 @@ async function artistSelected(evt) {
 
     closeBtn.addEventListener('click', () => {
 
-        albumPopUp.style.opacity = 0;
+        albumPopUp.style.opacity = '0';
         albumPopUp.style.visibility = 'hidden';
     });
 

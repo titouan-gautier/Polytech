@@ -12,7 +12,6 @@ class MaFenetre extends JFrame {
       this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
       pan = new Paneau(new Palet());
-      left = new Paneau(new Barre(15,100));
 
       setSize(320,200+50);
 
@@ -21,11 +20,6 @@ class MaFenetre extends JFrame {
 
       // Add the panels to the frame
       this.add(pan, BorderLayout.CENTER);
-      this.add(left, BorderLayout.WEST);
-
-
-
-
    }
 }
 
@@ -42,7 +36,7 @@ class Paneau extends JPanel {
 
    @Override
    public void paintComponent (Graphics g){
-      g.fillRect (p.getX(),p.getY(),10,10);
+      g.fillRect ((int)p.getX(),(int)p.getY(),10,10);
       p.deplace() ;
    }
 }

@@ -1,0 +1,106 @@
+/* saisissez ici vos règles CSS */
+
+#container
+{
+  width: 980px;
+  margin: 0 auto;
+}
+
+header{
+  text-align: center;
+  padding: 1em 0;
+  margin : 0;
+  background: black;
+  color: white;
+}
+
+#main{
+  position: relative;
+}
+
+#main h2
+{
+  margin-bottom: 1em;
+}
+
+#main nav {
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+
+#main p {
+  text-align: justify;
+}
+
+#main ul{
+  padding : 0;
+
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+
+  gap: 2vh;
+}
+
+#main ul > li{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  border: 1px solid;
+
+  padding: 1em;
+}
+
+#main ul > li > img{
+  width: 200px;
+  height: auto;
+}
+
+#main ul h2{
+  font-size: 1em;
+}
+
+#main form, #main nav > p{
+  display: inline-block;
+}
+
+#albums{
+  visibility: hidden;
+  width: 700px;
+  background-color: white;
+  position: absolute;
+  text-align: center;
+  border: solid 1px black;
+  opacity: 0;
+  padding: 1em;
+}
+
+table {
+  margin-left:auto; 
+  margin-right:auto;
+}
+
+td, th {
+  padding: 0 1em;
+}
+
+th {
+  padding: 1em 0;
+}
+
+tbody > tr > td > img {
+  width: 75px;
+  height: 75px;
+}
+
+
+footer{
+  text-align: center;
+  padding: 0.5em 0;
+  margin : 0;
+  background: black;
+  color: white;
+}

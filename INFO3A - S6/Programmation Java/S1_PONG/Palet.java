@@ -1,10 +1,10 @@
 public class Palet implements MovingObject {
 
-    int x ;
-    int y ;
+    float x ;
+    float y ;
 
-    int vx ;
-    int vy ;
+    float vx ;
+    float vy ;
 
     int marge ;
     
@@ -16,8 +16,8 @@ public class Palet implements MovingObject {
       marge = 15 ;
    }
 
-    boolean sortie_x (int px){ return (px< (marge)) || (px>(320 - marge)) ; }
-    boolean sortie_y (int py){ return (py< (marge)) || (py>(200 - marge)) ; }
+    boolean sortie_x (float px){ return (px< (marge)) || (px>(320 - marge)) ; }
+    boolean sortie_y (float py){ return (py< (marge)) || (py>(200 - marge)) ; }
     
     public void deplace(){
 	if ( sortie_x (x + vx) ) {
@@ -35,7 +35,7 @@ public class Palet implements MovingObject {
 	}
     }
 
-    public int getX(){ return x ; }
-    public int getY(){ return y ; }
+    public float getX(){ return x ; }
+    public float getY(){ return y ; }
     
 }
