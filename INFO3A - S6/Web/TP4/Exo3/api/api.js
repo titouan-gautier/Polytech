@@ -48,5 +48,29 @@ app.get('/genres/', async (req, res) => {
 
 });
 
+app.get('/genres/:genreId/artists', async (req, res) => {
+
+    const json = [];
+
+    const artistsReq = await fetch('http://ws.audioscrobbler.com/2.0/?method=tag.gettopartists&tag=' + req.params.genreId + '&api_key=2c08f218f45c6f367a0f4d2b350bbffc');
+
+    const artistsXML =  await new DOMParser().parseFromString(await artistsReq.text());
+
+    const artistsNames = xpath.select('//artist/name/text()', artistsXML).map(elem => elem.data);
+
+    const artistsPhoto =  xpath.select('//artist/image[@size="medium"]/text()', artistsXML).map(elem => elem.data);
+
+    for (let i = 0; i < artistsNames.length; i += 1) {
+        json.push({
+            name: artistsNames[i],
+            id: artistsNames[i],
+            photo: artistsPhoto[i],
+        });
+    }
+
+    res.set('Content-Type', 'text/json');
+    res.send(JSON.stringify(json));
+
+});
 // export de notre application vers le serveur principal
 module.exports = app;
