@@ -7,10 +7,12 @@ public class BanqueMusique {
 
       final String contenu ;
 
-      Sound(String c) {contenu = c ; }
+      Sound(String c) {
+         contenu = c ;
+      }
       
       @Override
-      public String toString(){
+      public String toString() {
          return "Sound with content :" + contenu ;
       }
 
@@ -33,8 +35,13 @@ public class BanqueMusique {
    
    public static Sound getFile(int i) throws Forbidden {
       
-      if (i==4) throw new Forbidden() ;
-      if (i>10) throw new NoSuchElementException() ;
+      if (i==4) {
+         throw new Forbidden("On ne peux pas écouter le son 4") ;
+      }
+
+      if (i>10) {
+         throw new NoSuchElementException("Ce son n'existe pas") ;
+      }
       
       return new Sound (Integer.toString(i)) ;
    }

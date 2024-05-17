@@ -1,13 +1,18 @@
 class Utilisateur {
-   EMail id ;
+   Email email ;
    String nom ;
 
-   Utilisateur (EMail _id, String _nom){
-      this.id = _id ;
-      this.nom = _nom ;
+   Utilisateur (Email email, String nom) {
+      this.email = email ;
+      this.nom = nom ;
    }
 
    void payer(int montant){
-      System.out.println("Facturation : " + nom + " " + montant); 
+      System.out.println("Facturation : " + nom + " " + montant);
+   }
+
+   @Override
+   public String toString() {
+      return this.nom;
    }
 }

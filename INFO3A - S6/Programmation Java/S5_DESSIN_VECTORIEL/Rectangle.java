@@ -1,7 +1,7 @@
 import java.awt.Graphics2D ;
 
 
-class Rectangle {
+class Rectangle implements Figure {
 
     int x  ;
     int y  ;
@@ -16,8 +16,9 @@ class Rectangle {
 	hauteur = h ;
     }
 
+    @Override
     public void draw(Graphics2D g){
-	g.drawRect(x,y,largeur,hauteur);
+        g.drawRect(x,y,largeur,hauteur);
     }
-    
+
 }

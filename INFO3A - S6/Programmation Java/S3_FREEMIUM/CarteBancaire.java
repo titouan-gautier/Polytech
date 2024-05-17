@@ -7,9 +7,9 @@ public class CarteBancaire{
     int pictogramme;
 
     public CarteBancaire(int numero, int date, int pictogramme){
-	this.numero = numero ;
-	this.date = date ;
-	this.pictogramme = pictogramme ;
+	    this.numero = numero ;
+	    this.date = date ;
+	    this.pictogramme = pictogramme ;
     }
 
     /** Déclenche un paiement sur cette carte.
@@ -20,7 +20,8 @@ public class CarteBancaire{
           System.out.println ("Carte numero " + this.numero + " : debit " + montant +".") ;
           return true ; 
        }
-       else return false ;
+
+       return false ;
     }
 
 }
