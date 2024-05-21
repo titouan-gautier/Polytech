@@ -1,0 +1,10 @@
+//
+// Created by titoug on 17/05/24.
+//
+
+#define ADRESSE_EMETTEUR	"127.0.0.1"
+#define ADRESSE_RECEPTEUR	"127.0.0.1"
+#define PORT_RECEPTEUR		1920
+#define LONGUEUR_ADRESSE	16
+#define LONGUEUR_MESSAGE	121
+
