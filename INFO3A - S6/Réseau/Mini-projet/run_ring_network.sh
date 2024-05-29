@@ -26,10 +26,10 @@ for (( i=1; i<NUM_MACHINES; i++ ))
 do
   PORT=$((BASE_PORT + i))
   NEXT_PORT=$((BASE_PORT + (i + 1) % NUM_MACHINES))
-  gnome-terminal -- bash -c "$EXECUTABLE $i $PORT $NEXT_PORT; exec bash"
+  gnome-terminal -- bash -c "$EXECUTABLE $i $PORT $NEXT_PORT $NUM_MACHINES; exec bash"
 done
 
-gnome-terminal -- bash -c "$EXECUTABLE 0 5000 5001; exec bash"
+gnome-terminal -- bash -c "$EXECUTABLE 0 5000 5001 £NUM_MACHINES; exec bash"
 
 echo "Instances lancées dans des terminaux séparés."
 

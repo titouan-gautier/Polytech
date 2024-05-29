@@ -47,7 +47,7 @@ int createSocket(int port_A, int port_B, char *ip, int first)
 	
     while (1) {
         if (first) {
-            sendto(sock_C, "1", 10 * sizeof(char), 0, (struct sockaddr*) &sa_C, taille_sa_C);
+            sendto(sock_C, "Salut", 10 * sizeof(char), 0, (struct sockaddr*) &sa_C, taille_sa_C);
             first = 0;
         }
 
@@ -55,10 +55,11 @@ int createSocket(int port_A, int port_B, char *ip, int first)
 
         printf("%s \n", message);
 
-		char res;
-		itoa(atoi(message)+1, res, 10);
+		char res[10];
+    	int num = atoi(message) + 1;
+    	sprintf(res, "%d", num);
 
-        sendto(sock_C, res, 10 * sizeof(char), 0, (struct sockaddr*) &sa_C, taille_sa_C);
+        sendto(sock_C, message, 10 * sizeof(char), 0, (struct sockaddr*) &sa_C, taille_sa_C);
     }
 
 	close(sock_S);

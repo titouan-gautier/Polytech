@@ -5,19 +5,19 @@
 #include <unistd.h>
 #include <arpa/inet.h>
 
-void process_token(int sockfd, struct sockaddr_in *next_addr, int current_host) {
-    decision(sockfd, next_addr, current_host, "token");
+void process_token(int sockfd, struct sockaddr_in *next_addr, int current_host, int nb_machine) {
+    decision(sockfd, next_addr, current_host, "token", nb_machine);
 }
 
-void process_message(int sockfd, struct sockaddr_in *next_addr, int current_host, Packet *packet) {
+void process_message(int sockfd, struct sockaddr_in *next_addr, int current_host, Packet *packet, int nb_machine) {
     if (packet->destination == current_host) {
-        decision(sockfd, next_addr, current_host, "message");
+        decision(sockfd, next_addr, current_host, "message", nb_machine);
     } else {
         send_packet(sockfd, next_addr, packet);
     }
 }
 
-void decision(int sockfd, struct sockaddr_in *next_addr, int current_host, char *type) {
+void decision(int sockfd, struct sockaddr_in *next_addr, int current_host, char *type, int nb_machine) {
     printf("Machine %d à reçu un %s, voulez vous envoyer un message ? (y/n)\n", current_host, type);
 
     char send_message = getchar();
@@ -28,10 +28,17 @@ void decision(int sockfd, struct sockaddr_in *next_addr, int current_host, char 
         printf("A quel Machine voulez vous envoyer le message ?\n");
         int destination;
         scanf("%d", &destination);
+        while (destination >= nb_machine) {
+            printf("Cette machine n'est pas dans l'anneau, a quel Machine voulez vous envoyer ?\n");
+            scanf("%d", &destination);
+        }
+
+        int vidageTampon;
+        while ((vidageTampon = getchar()) != '\n' && vidageTampon != EOF);
 
         printf("Quel message voulez vous envoyer ?\n");
         char message[MAX_MESSAGE_LENGTH];
-        scanf("%s", message);
+        fgets(message, MAX_MESSAGE_LENGTH, stdin);
 
         Packet packet;
         packet.type = MESSAGE;
@@ -45,7 +52,7 @@ void decision(int sockfd, struct sockaddr_in *next_addr, int current_host, char 
     }
 }
 
-void host_loop(int host_id, int local_port, int next_port) {
+void host_loop(int host_id, int local_port, int next_port, int nb_machine) {
     int sockfd;
     struct sockaddr_in addr, next_addr;
     Packet packet;
@@ -82,10 +89,10 @@ void host_loop(int host_id, int local_port, int next_port) {
         receive_packet(sockfd, &packet);
         switch (packet.type) {
             case TOKEN:
-                process_token(sockfd, &next_addr, host_id);
+                process_token(sockfd, &next_addr, host_id, nb_machine);
                 break;
             case MESSAGE:
-                process_message(sockfd, &next_addr, host_id, &packet);
+                process_message(sockfd, &next_addr, host_id, &packet, nb_machine);
                 break;
             default:
                 printf("Unknown packet type\n");
